@@ -3,6 +3,7 @@ package lixin.huobi.transactionrobot.utils;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.*;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -155,10 +156,15 @@ public class HttpInstance {
     }
 
     public static CloseableHttpClient getHttpClient() throws Exception {
+        RequestConfig config = RequestConfig.custom()
+                .setConnectTimeout(3 * 1000)
+                .setConnectionRequestTimeout(3 * 1000)
+                .setSocketTimeout(3 * 1000).build();
         CloseableHttpClient httpClient = HttpClients.custom()
                 .setSSLSocketFactory(sslsf)
                 .setConnectionManager(cm)
                 .setConnectionManagerShared(true)
+                .setDefaultRequestConfig(config)
                 .build();
         return httpClient;
     }
