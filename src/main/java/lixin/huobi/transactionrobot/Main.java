@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args){
         MarketApi marketApi = new MarketApi();
         try {
-            JSONObject kline = marketApi.getMarketDepth("btcusdt", "step0");
+            JSONObject kline = marketApi.getTradeDetail("btcusdt");
             System.out.println(kline.toString());
         } catch (Exception e) {
             System.out.println("出错！");
