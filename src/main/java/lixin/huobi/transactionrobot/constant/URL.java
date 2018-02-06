@@ -20,7 +20,7 @@ public class URL {
 
     //用户资产api相对路径
     public static String ACCOUNTS = "/v1/account/accounts";
-    public static String BALANCE = "/v1/account/accounts/"+ PropertyUtil.getBase("account")+"/balance";
+    public static String BALANCE = "/v1/account/accounts/{account-id}/balance";
 
     //交易api
     public static String PLACE_ORDER = "/v1/order/orders/place";
