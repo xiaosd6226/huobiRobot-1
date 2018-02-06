@@ -29,7 +29,9 @@ public class APIClient {
     private static Logger logger = LoggerFactory.getLogger(APIClient.class);
     static {
         postHeaders.put("Content-Type", "application/json");
+        postHeaders.put("User-Agent", Constant.USER_AGENT);
         getHeaders.put("Content-Type", "application/x-www-form-urlencoded");
+        getHeaders.put("User-Agent", Constant.USER_AGENT);
     }
 
     /**
@@ -139,6 +141,7 @@ public class APIClient {
      */
     public static JSONObject doGet(String uri, Map<String, String> params) throws Exception {
         String url = "https://" + Constant.BASE_URL + uri + "?" + toRequestString(params);
+        logger.info("请求url为：{}", url);
         String responseStr = HttpInstance.get(url, getHeaders);
         JSONObject returnValue = JSON.parseObject(responseStr);
         return returnValue;

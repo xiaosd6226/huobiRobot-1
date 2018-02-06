@@ -11,5 +11,6 @@ public class Constant {
     public static String POST = "POST";
     public static String GET = "GET";
 
-
+    //user-agent
+    public static String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36";
 }
