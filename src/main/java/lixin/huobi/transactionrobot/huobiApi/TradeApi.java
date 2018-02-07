@@ -26,7 +26,7 @@ public class TradeApi {
      * @Date 2018/1/31 19:10
      * @Description 下单
      */
-    public JSONObject placeOrder(String account_id, String amount, String price, String source, String symbol, String type) throws Exception {
+    public String placeOrder(String account_id, String amount, String price, String source, String symbol, String type) throws Exception {
         Map<String,String> params = new HashMap();
         JSONObject body = new JSONObject();
         body.put("account-id", account_id);
@@ -44,7 +44,8 @@ public class TradeApi {
             body.put("type", type);
         }
         APIClient.createSignature(Constant.ACCESS_KEY, Constant.SECRET_KEY, Constant.POST, Constant.BASE_URL, URL.PLACE_ORDER, params);
-        JSONObject orderId = APIClient.doPost(URL.PLACE_ORDER, params, body.toString());
+        JSONObject order = APIClient.doPost(URL.PLACE_ORDER, params, body.toString());
+        String orderId = order.getString("data");
         return orderId;
     }
 
@@ -73,7 +74,7 @@ public class TradeApi {
     public JSONObject cancelOrders(JSONArray order_ids) throws Exception {
         Map<String,String> params = new HashMap();
         JSONObject body = new JSONObject();
-        body.put("order-ids", body.toString());
+        body.put("order-ids", order_ids);
         APIClient.createSignature(Constant.ACCESS_KEY, Constant.SECRET_KEY, Constant.POST, Constant.BASE_URL, URL.CANCEL_MUTI_ORDER, params);
         JSONObject cancelOrders = APIClient.doPost(URL.CANCEL_MUTI_ORDER, params, body.toString());
         return cancelOrders;
