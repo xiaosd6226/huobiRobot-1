@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Component
 public class SignatureUtils {
     public static Map<String, Map<String, String>> signatureMap = new HashMap<>();
     private Logger logger = LoggerFactory.getLogger(SignatureUtils.class);

@@ -1,11 +1,13 @@
 package lixin.huobi.transactionrobot.utils;
 
 import lixin.huobi.transactionrobot.Exception.WrongAreaException;
+import org.springframework.stereotype.Component;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.LinkedBlockingQueue;
 
+@Component
 public class QueueUtils {
     private static final BlockingQueue<String> btcQueue;
     private static final BlockingQueue<String> ethQueue;

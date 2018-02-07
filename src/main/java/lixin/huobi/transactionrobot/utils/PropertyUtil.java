@@ -3,6 +3,7 @@ package lixin.huobi.transactionrobot.utils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.io.InputStream;
 import java.util.HashMap;
@@ -10,7 +11,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
-
+@Component
 public class PropertyUtil {
     private static Logger logger = LoggerFactory.getLogger(PropertyUtil.class);
     public static String BASENAME = "config.properties";
