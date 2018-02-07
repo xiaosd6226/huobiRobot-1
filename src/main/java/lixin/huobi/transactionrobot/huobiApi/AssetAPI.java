@@ -2,7 +2,9 @@ package lixin.huobi.transactionrobot.huobiApi;
 
 import com.alibaba.fastjson.JSONObject;
 import lixin.huobi.transactionrobot.constant.Constant;
+import lixin.huobi.transactionrobot.constant.Signature;
 import lixin.huobi.transactionrobot.constant.URL;
+import lixin.huobi.transactionrobot.utils.SignatureUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,24 +25,27 @@ public class AssetAPI {
      * @Description 查询当前用户的所有账户(即account-id)
      */
     public JSONObject getAccounts() throws Exception {
-        Map<String,String> params = new HashMap();
-        APIClient.createSignature(Constant.ACCESS_KEY, Constant.SECRET_KEY, Constant.GET, Constant.BASE_URL, URL.ACCOUNTS, params);
-        JSONObject accounts = APIClient.doGet(URL.ACCOUNTS, params);
+        JSONObject accounts = APIClient.doGet(URL.ACCOUNTS, SignatureUtils.getSignatureParams(Signature.ACCOUNTS));
         return accounts;
     }
 
     /**
-     * @param account_id    账号
      * @Author lixin@wecash.net
      * @Date 2018/1/31 18:49
      * @Description 查询指定账户的余额
      */
-    public JSONObject getBalanceByAccountId(String account_id) throws Exception {
-        String url = URL.BALANCE.replace("{account-id}", account_id);
-        Map<String,String> params = new HashMap();
-        params.put("account-id", account_id);
-        APIClient.createSignature(Constant.ACCESS_KEY, Constant.SECRET_KEY, Constant.GET, Constant.BASE_URL, url, params);
-        JSONObject balance = APIClient.doGet(url, params);
+    public JSONObject getBalanceBySpot() throws Exception {
+        JSONObject balance = APIClient.doGet(URL.SPOT_BALANCE, SignatureUtils.getSignatureParams(Signature.SPOT_BALANCE));
+        return balance;
+    }
+
+    /**
+     * @Author lixin@wecash.net
+     * @Date 2018/1/31 18:49
+     * @Description 查询指定账户的余额
+     */
+    public JSONObject getBalanceByOtc() throws Exception {
+        JSONObject balance = APIClient.doGet(URL.OTC_BALANCE, SignatureUtils.getSignatureParams(Signature.OTC_BALANCE));
         return balance;
     }
 

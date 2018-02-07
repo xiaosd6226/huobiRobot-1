@@ -37,15 +37,15 @@ public class APIClient {
     /**
      * 创建一个有效的签名。该方法为客户端调用，将在传入的params中添加AccessKeyId、Timestamp、SignatureVersion、SignatureMethod、Signature参数。
      *
-     * @param accessKey       AppKeyId.
+     * @param accessKey AppKeyId.
      * @param secretKey AppKeySecret.
-     * @param method       请求方法，"GET"或"POST"
-     * @param host         请求域名，例如"be.huobi.com"
-     * @param uri          请求路径，注意不含?以及后的参数，例如"/v1/api/info"
-     * @param params       原始请求参数，以Key-Value存储，注意Value不要编码
+     * @param method    请求方法，"GET"或"POST"
+     * @param host      请求域名，例如"be.huobi.com"
+     * @param uri       请求路径，注意不含?以及后的参数，例如"/v1/api/info"
+     * @param params    原始请求参数，以Key-Value存储，注意Value不要编码
      */
-    public static void createSignature(String accessKey, String secretKey, String method, String host,
-                                String uri, Map<String, String> params) {
+    public static Map<String, String> createSignature(String accessKey, String secretKey, String method, String host,
+                                                      String uri, Map<String, String> params) {
         StringBuilder sb = new StringBuilder(1024);
         sb.append(method.toUpperCase()).append('\n') // GET
                 .append(host.toLowerCase()).append('\n') // Host
@@ -64,7 +64,7 @@ public class APIClient {
         }
         // remove last '&':
         sb.deleteCharAt(sb.length() - 1);
-        logger.info("最终的要进行签名计算的字符串为:"+"\n"+"{}", sb.toString());
+        logger.info("最终的要进行签名计算的字符串为:" + "\n" + "{}", sb.toString());
         // sign:
         Mac hmacSha256 = null;
         try {
@@ -83,6 +83,7 @@ public class APIClient {
         params.put("Signature", actualSign);
         logger.info("签名计算结果：{}", actualSign);
         logger.info("最终参数为：{}", params.toString());
+        return params;
     }
 
     /**

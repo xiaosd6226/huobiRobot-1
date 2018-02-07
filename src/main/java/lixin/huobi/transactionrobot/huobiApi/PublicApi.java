@@ -2,7 +2,9 @@ package lixin.huobi.transactionrobot.huobiApi;
 
 import com.alibaba.fastjson.JSONObject;
 import lixin.huobi.transactionrobot.constant.Constant;
+import lixin.huobi.transactionrobot.constant.Signature;
 import lixin.huobi.transactionrobot.constant.URL;
+import lixin.huobi.transactionrobot.utils.SignatureUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,9 +27,7 @@ public class PublicApi {
      * @Description 查询系统支持的所有交易对及精度
      */
     public JSONObject getAllSymbols() throws Exception {
-        Map<String,String> params = new HashMap();
-        APIClient.createSignature(Constant.ACCESS_KEY, Constant.SECRET_KEY, Constant.GET, Constant.BASE_URL, URL.SYMBOLS, params);
-        JSONObject symbols = APIClient.doGet(URL.SYMBOLS, params);
+        JSONObject symbols = APIClient.doGet(URL.SYMBOLS, SignatureUtils.getSignatureParams(Signature.ALL_SYMBOLS));
         return symbols;
     }
 
@@ -37,9 +37,7 @@ public class PublicApi {
      * @Description 查询系统支持的所有币种
      */
     public JSONObject getAllCurrencys () throws Exception {
-        Map<String,String> params = new HashMap();
-        APIClient.createSignature(Constant.ACCESS_KEY, Constant.SECRET_KEY, Constant.GET, Constant.BASE_URL, URL.CURRENCYS, params);
-        JSONObject currencys = APIClient.doGet(URL.CURRENCYS, params);
+        JSONObject currencys = APIClient.doGet(URL.CURRENCYS, SignatureUtils.getSignatureParams(Signature.ALL_CURRENCYS));
         return currencys;
     }
 
@@ -49,9 +47,7 @@ public class PublicApi {
      * @Description 查询系统当前时间
      */
     public JSONObject getCurrentTime() throws Exception {
-        Map<String,String> params = new HashMap();
-        APIClient.createSignature(Constant.ACCESS_KEY, Constant.SECRET_KEY, Constant.GET, Constant.BASE_URL, URL.TIME_STAMP, params);
-        JSONObject currentTime = APIClient.doGet(URL.TIME_STAMP, params);
+        JSONObject currentTime = APIClient.doGet(URL.TIME_STAMP, SignatureUtils.getSignatureParams(Signature.CURRENT_TIME));
         return currentTime;
     }
 }

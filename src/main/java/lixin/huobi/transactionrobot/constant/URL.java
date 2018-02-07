@@ -20,7 +20,8 @@ public class URL {
 
     //用户资产api相对路径
     public static String ACCOUNTS = "/v1/account/accounts";
-    public static String BALANCE = "/v1/account/accounts/{account-id}/balance";
+    public static String SPOT_BALANCE = "/v1/account/accounts/" + Constant.SPOT_ACCOUNT + "/balance";
+    public static String OTC_BALANCE = "/v1/account/accounts/" + Constant.OTC_ACCOUNT + "/balance";
 
     //交易api
     public static String PLACE_ORDER = "/v1/order/orders/place";

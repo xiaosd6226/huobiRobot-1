@@ -11,6 +11,8 @@ public class Constant {
     public static String POST = "POST";
     public static String GET = "GET";
 
+    public static String SPOT_ACCOUNT = PropertyUtil.getBase("account_id_spot");
+    public static String OTC_ACCOUNT = PropertyUtil.getBase("account_id_otc");
     //user-agent
     public static String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36";
 }
