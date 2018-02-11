@@ -1,18 +1,13 @@
 package lixin.huobi.transactionrobot.utils;
 
-import com.alibaba.fastjson.JSONObject;
 import lixin.huobi.transactionrobot.constant.Constant;
 import lixin.huobi.transactionrobot.constant.Signature;
 import lixin.huobi.transactionrobot.constant.URL;
-import lixin.huobi.transactionrobot.huobiApi.APIClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Component

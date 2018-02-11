@@ -1,9 +1,8 @@
-package lixin.huobi.transactionrobot.huobiApi;
+package lixin.huobi.transactionrobot.utils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import lixin.huobi.transactionrobot.constant.Constant;
-import lixin.huobi.transactionrobot.utils.HttpInstance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,9 +27,9 @@ public class APIClient {
     static final ZoneId ZONE_GMT = ZoneId.of("Z");
     private static Logger logger = LoggerFactory.getLogger(APIClient.class);
     static {
-        postHeaders.put("Content-Type", "application/json");
+        postHeaders.put("Content-TradeType", "application/json");
         postHeaders.put("User-Agent", Constant.USER_AGENT);
-        getHeaders.put("Content-Type", "application/x-www-form-urlencoded");
+        getHeaders.put("Content-TradeType", "application/x-www-form-urlencoded");
         getHeaders.put("User-Agent", Constant.USER_AGENT);
     }
 

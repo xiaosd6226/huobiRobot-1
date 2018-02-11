@@ -1,20 +1,19 @@
-package lixin.huobi.transactionrobot.huobiApi;
+package lixin.huobi.transactionrobot.service;
 
 import com.alibaba.fastjson.JSONObject;
-import lixin.huobi.transactionrobot.constant.Constant;
 import lixin.huobi.transactionrobot.constant.Signature;
 import lixin.huobi.transactionrobot.constant.URL;
+import lixin.huobi.transactionrobot.utils.APIClient;
 import lixin.huobi.transactionrobot.utils.SignatureUtils;
-
-import java.util.HashMap;
-import java.util.Map;
+import org.springframework.stereotype.Service;
 
 /**
  * @Author lixin@wecash.net
  * @Date 2018/1/30 19:04
  * @Description 公共api
  */
-public class PublicApi {
+@Service
+public class PublicService {
 
     /**
      * @return  base_currency    基础币种

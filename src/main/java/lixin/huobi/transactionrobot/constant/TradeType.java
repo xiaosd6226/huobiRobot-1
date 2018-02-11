@@ -1,6 +1,6 @@
 package lixin.huobi.transactionrobot.constant;
 
-public class Type {
+public class TradeType {
     //市价买
     public static String BUY_MARKET = "buy-market";
     //市价卖

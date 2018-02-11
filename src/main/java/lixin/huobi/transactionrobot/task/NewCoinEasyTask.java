@@ -3,16 +3,13 @@ package lixin.huobi.transactionrobot.task;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import lixin.huobi.transactionrobot.constant.Constant;
-import lixin.huobi.transactionrobot.constant.Type;
-import lixin.huobi.transactionrobot.huobiApi.PublicApi;
-import lixin.huobi.transactionrobot.huobiApi.TradeApi;
+import lixin.huobi.transactionrobot.constant.TradeType;
+import lixin.huobi.transactionrobot.service.PublicService;
+import lixin.huobi.transactionrobot.service.TradeService;
 import lixin.huobi.transactionrobot.utils.AllCoins;
-import lixin.huobi.transactionrobot.utils.QueueUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
-
-import java.util.concurrent.BlockingQueue;
 
 
 public class NewCoinEasyTask implements Runnable{
@@ -33,11 +30,11 @@ public class NewCoinEasyTask implements Runnable{
     @Override
     public void run() {
         JSONArray coins = AllCoins.getCoins();
-        PublicApi publicApi = new PublicApi();
-        TradeApi tradeApi = new TradeApi();
+        PublicService publicService = new PublicService();
+        TradeService tradeService = new TradeService();
         while (true) {
             try {
-                JSONObject currencys = publicApi.getAllCurrencys();
+                JSONObject currencys = publicService.getAllCurrencys();
                 JSONArray data = currencys.getJSONArray("data");
                 //若币种数量变多，说明此时出现新币种
                 if (data.size() > coins.size()) {
@@ -49,7 +46,7 @@ public class NewCoinEasyTask implements Runnable{
 
                     //下单
                     logger.info("开始下单！");
-                    tradeApi.placeOrder(Constant.SPOT_ACCOUNT, "1", "1", null, sybmol, Type.BUY_LIMIT);
+                    tradeService.placeOrder(Constant.SPOT_ACCOUNT, "1", "1", null, sybmol, TradeType.BUY_LIMIT);
                     logger.info("下单结束！");
                 }
             } catch (Exception e) {

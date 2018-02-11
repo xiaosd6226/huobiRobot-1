@@ -1,13 +1,16 @@
-package lixin.huobi.transactionrobot.huobiApi;
+package lixin.huobi.transactionrobot.service;
 
 import com.alibaba.fastjson.JSONObject;
 import lixin.huobi.transactionrobot.constant.Constant;
 import lixin.huobi.transactionrobot.constant.URL;
+import lixin.huobi.transactionrobot.utils.APIClient;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class MarketApi {
+@Service
+public class MarketService {
 
     /**
      * @return

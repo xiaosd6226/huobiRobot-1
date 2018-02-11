@@ -3,7 +3,7 @@ package lixin.huobi.transactionrobot.utils;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import lixin.huobi.transactionrobot.huobiApi.PublicApi;
+import lixin.huobi.transactionrobot.service.PublicService;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -14,9 +14,9 @@ public class AllCoins {
         loadCoins();
     }
     private static void loadCoins() {
-        PublicApi publicApi = new PublicApi();
+        PublicService publicService = new PublicService();
         try {
-            JSONObject currencys = publicApi.getAllCurrencys();
+            JSONObject currencys = publicService.getAllCurrencys();
             coins = currencys.getJSONArray("data");
         } catch (Exception e) {
             e.printStackTrace();

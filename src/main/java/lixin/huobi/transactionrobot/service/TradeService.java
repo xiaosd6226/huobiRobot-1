@@ -1,10 +1,12 @@
-package lixin.huobi.transactionrobot.huobiApi;
+package lixin.huobi.transactionrobot.service;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import lixin.huobi.transactionrobot.constant.Constant;
 import lixin.huobi.transactionrobot.constant.URL;
+import lixin.huobi.transactionrobot.utils.APIClient;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +16,8 @@ import java.util.Map;
  * @Date 2018/1/31 19:04
  * @Description 交易api
  */
-public class TradeApi {
+@Service
+public class TradeService {
     /**
      * @param account_id 账户 ID，使用accounts方法获得。币币交易使用‘spot’账户的accountid；借贷资产交易，请使用‘margin’账户的accountid
      * @param amount     限价单表示下单数量，市价买单时表示买多少钱，市价卖单时表示卖多少币
